@@ -1,0 +1,25 @@
+<button type="button" class="btn btn-lg btn-outline-secondary mt-3" routerLink="/">
+  Back to Home
+</button>
+
+<div *ngIf="allBooks.length > 0">
+  <front-end-internship-assignment-table-view [booksList]="allBooks" [subjectName]="subjectName"></front-end-internship-assignment-table-view>
+</div>
+
+
+<!-- loader element -->
+
+<div *ngIf="isLoading">
+  <div class="center">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+</div>

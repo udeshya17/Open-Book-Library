@@ -1,0 +1,49 @@
+.header {
+  @apply tw-flex tw-flex-row tw-justify-between tw-items-center tw-rounded-4-px tw-p-12-px tw-m-24-px;
+  background: linear-gradient(146deg, #e1eeff 19.67%, #ffe4fb 127.56%);
+}
+
+.search-button {
+  position: relative;
+  display: inline-block;
+
+  input[type="text"] {
+    padding: 36px;
+    border: none;
+    background-color: inherit;
+    font-size: 16px;
+    color: #333;
+    border-radius: 4px;
+    outline: none;
+    width: 200px;
+    height: 32px;
+
+    &:focus {
+      box-shadow: 0 0 2px 2px #ccc;
+    }
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    color: #999;
+  }
+}
+
+.trending-subjects {
+  @apply tw-bg-table-header-bg tw-p-12-px tw-rounded-4-px tw-shadow-lg
+}
+
+li {
+  &:hover {
+    // styles for the elements inside the list item when it's hovered
+    color: red;
+    background-color: #B7B7B7;
+  }
+}
+
+.btn {
+  background-color: #ECC9EE;
+}

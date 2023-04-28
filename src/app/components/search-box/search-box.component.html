@@ -1,0 +1,95 @@
+<!-- Search Input Box -->
+
+<section class="navbar">
+  <nav class="navbar" style="background-color: #577D86;">
+    <nav class=" bg-body-tertiary  ">
+      <div class="search-box-container">
+        <div class="search-box form-group row">
+          <div class="col-8">
+            <div class="input-group">
+              <span class="search-bar input-group-text">
+                <i class=" fa-solid fa-magnifying-glass"></i> <!-- icon for search-->
+              </span>
+              <input type="text" class="search-bar form-control" [(ngModel)]="searchQuery" (keyup.enter)="searchBooks()" placeholder="Search by {{ searchType === 'title' ? 'book title' : 'author name' }}" />
+              <button class="clear-search" *ngIf="searchQuery" (click)="clearSearch()"><i class="fas fa-times"></i></button>
+            </div>
+            <div *ngIf="isLoading">
+              <div class="center">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 ">
+            <select class="form-select" [(ngModel)]="searchType">
+              <option value="title">Book Title</option>
+              <option value="author_name">Author Name</option>
+            </select>
+          </div>
+        </div>
+
+
+        <!-- Offcanvas Box In search box -->
+
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Open Books Library</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+            </ul>
+            <form class="d-flex mt-3" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </nav>
+</section>
+
+
+<!-- Table for Api Data -->
+
+<table class="content-table container">
+  <thead>
+    <tr>
+      <th>Title and Sub Title</th>
+      <th>Author</th>
+      <th>Published year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.title }}</td>
+      <td>{{ book.author_name}}</td>
+      <td>{{ book.publish_year }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page pagination">
+  <button class="btn  btn-outline-dark" [disabled]="currentPage === 1" (click)="previousPage()">Previous</button>
+  <span *ngFor="let page of getPageNumbers()">
+    <button class="btn  btn-outline-dark" [class.active]="currentPage === page" (click)="setPage(page)">{{ page }}</button>
+  </span>
+  <button class="btn  btn-outline-dark" [disabled]="currentPage === totalPages" (click)="nextPage()">Next</button>
+</div>
